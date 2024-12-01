@@ -1,23 +1,26 @@
 const { ApolloServer } = require("@apollo/server");
+const User = require("./user");
 
 const createApolloServer = async () => {
     const apolloServer = new ApolloServer({
-        typeDefs:
-            `type Query{
-            helloString:String
+        typeDefs: `
+            ${User.typeDef}
+
+            type Query{
+             helloString:String!
             }
+             
             type Mutation{
-            helloString:String
+            ${User.mutation}
             }
             `
-
         ,
         resolvers: {
             Query: {
-                helloString: async () => "hello"
+                helloString: () => "Hello, world!",
             },
             Mutation: {
-                helloString: async () => "hello"
+                ...User.resolver.mutation
             }
         }
     })

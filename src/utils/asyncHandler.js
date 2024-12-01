@@ -1,8 +1,12 @@
-const asyncHandler = (handler) = async (req, res, next) => {
-    try {
-        await handler(req, res, next);
+const asyncHandler = (handler) => {
+    return async (input) => {
+        try {
+            return await handler(input);
+        } catch (error) {
+            console.error('Caught error in asyncHandler:', error);
+            throw error;
+        }
+    };
+};
 
-    } catch (error) {
-        throw new Error(error)
-    }
-}
+module.exports = asyncHandler
