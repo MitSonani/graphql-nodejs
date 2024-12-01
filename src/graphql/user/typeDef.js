@@ -15,6 +15,7 @@ const typeDef = `
     gender: String
     profileImage: String
     userName: String!
+    token:String
   }
 `;
 

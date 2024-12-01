@@ -133,3 +133,5 @@ dist
 .pnp.*
 *.sql
 *.toml
+bun.lockb
+*.lockb

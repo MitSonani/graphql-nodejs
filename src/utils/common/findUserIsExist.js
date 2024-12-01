@@ -5,7 +5,7 @@ const IsUserExist = async (email) => {
     const isUserExist = await prismaClient.user.findUnique({ where: { email: email } })
 
     if (isUserExist) {
-        return true
+        return isUserExist
     } else {
         return false
     }

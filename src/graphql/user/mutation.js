@@ -8,6 +8,11 @@ const mutation = `
     userName: String!
     password: String!
   ): CreateUserResponse
+
+  userSignIn(
+   email: String!
+   password: String!
+  ):CreateUserResponse
 `;
 
 module.exports = mutation;

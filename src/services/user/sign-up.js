@@ -1,19 +1,18 @@
 const prismaClient = require('../../lib/connectionDB')
 const asyncHandler = require('../../utils/asyncHandler')
-const { genrateSalt, genrateHasedPassword } = require('../common/genrateHashedPassword')
+const { genrateSalt, genrateHasedPassword } = require('../../utils/common/genrateHashedPassword')
 const ApiError = require('../../utils/ApiError')
-const ApiResponse = require('../../utils/ApiResponse')
+const IsUserExist = require('../../utils/common/findUserIsExist')
 
 module.exports = {
-    handler: asyncHandler(async (payload) => {
+    Handler: asyncHandler(async (payload) => {
         const { firstName, email, gender, userName, lastName, password, profileImage } = payload;
 
         if (!firstName || !email || !gender || !userName || !password) {
             throw new ApiError(404, "All Fields are required")
         }
 
-        const isUserExist = await prismaClient.user.findUnique({ where: { email: email } })
-
+        const isUserExist = await IsUserExist(email)
         if (isUserExist) {
             throw new ApiError(400, "User Alredy Exist")
         }
@@ -40,8 +39,6 @@ module.exports = {
                 profileImage: true
             }
         })
-
-
         return response;
     })
 }
