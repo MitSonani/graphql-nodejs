@@ -1,5 +1,6 @@
 const { ApolloServer } = require("@apollo/server");
-const User = require("./user");
+const User = require('./user');
+const Post = require('./post')
 
 const createApolloServer = async () => {
     const apolloServer = new ApolloServer({
@@ -12,6 +13,7 @@ const createApolloServer = async () => {
              
             type Mutation{
             ${User.mutation}
+            ${Post.mutation}
             }
             `
         ,
@@ -20,7 +22,8 @@ const createApolloServer = async () => {
                 helloString: () => "Hello, world!",
             },
             Mutation: {
-                ...User.resolver.mutation
+                ...User.resolver.mutation,
+                ...Post.resolver.mutation
             }
         }
     })
