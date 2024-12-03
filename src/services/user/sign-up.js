@@ -1,14 +1,15 @@
-const prismaClient = require('../../lib/connectionDB')
+
 const asyncHandler = require('../../utils/asyncHandler')
-const { genrateSalt, genrateHasedPassword } = require('../../utils/common/genrateHashedPassword')
 const ApiError = require('../../utils/ApiError')
+const prismaClient = require('../../lib/connectionDB')
+const { genrateHasedPassword, genrateSalt } = require('../../utils/common/genrateHashedPassword')
 const IsUserExist = require('../../utils/common/findUserIsExist')
 
 module.exports = {
     Handler: asyncHandler(async (payload) => {
         const { firstName, email, gender, userName, lastName, password, profileImage } = payload;
 
-        if (!firstName || !email || !gender || !userName || !password) {
+        if (!firstName || !email || !userName || !password) {
             throw new ApiError(404, "All Fields are required")
         }
 

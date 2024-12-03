@@ -1,9 +1,11 @@
-const { createUser } = require('../Mutations/user')
+const { createUser, userSignIn } = require('../Mutations/user')
+
 
 
 
 module.exports = {
     Mutation: {
-        createUser
+        createUser,
+        userSignIn
     }
 }

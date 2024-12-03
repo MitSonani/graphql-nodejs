@@ -2,6 +2,7 @@ const userApi = require('../../../services/user')
 
 module.exports = {
     createUser: async (_, input) => {
+
         const response = await userApi.Signup.Handler(input)
         return {
             message: "User Registered Successfully",
@@ -37,4 +38,6 @@ module.exports = {
             statusCode: 200
         };
     }
+
+
 }

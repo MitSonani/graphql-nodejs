@@ -21,4 +21,24 @@ type CreateUserResponse {
     userName: String!
     token:String
   }
+
+
+  type Mutation {
+    createUser(
+      firstName: String!
+      lastName: String
+      email: String!
+      password: String!
+      userName: String!
+      gender:String
+      profileImage:String
+    ): CreateUserResponse
+  }
+
+  type Mutation{
+    userSignIn(
+      email: String!
+      password: String!
+    ):CreateUserResponse
+  }
 `
