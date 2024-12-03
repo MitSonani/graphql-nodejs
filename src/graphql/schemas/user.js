@@ -1,5 +1,9 @@
-const typeDef = `
-  type CreateUserResponse {
+const { gql } = require("apollo-server-express");
+
+module.exports = gql`
+
+
+type CreateUserResponse {
     id: ID
     message: String!
     success: Boolean!
@@ -17,6 +21,4 @@ const typeDef = `
     userName: String!
     token:String
   }
-`;
-
-module.exports = typeDef;
+`

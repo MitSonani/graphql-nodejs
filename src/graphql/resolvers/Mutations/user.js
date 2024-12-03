@@ -1,7 +1,6 @@
-const userApi = require('../../services/user/index')
-const query = {}
+const userApi = require('../../../services/user')
 
-const mutation = {
+module.exports = {
     createUser: async (_, input) => {
         const response = await userApi.Signup.Handler(input)
         return {
@@ -39,8 +38,3 @@ const mutation = {
         };
     }
 }
-
-
-const resolver = { query, mutation }
-
-module.exports = resolver
